@@ -17,7 +17,36 @@ class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                color: const Color.fromARGB(255, 111, 44, 200),
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 50, left: 20),
+                  child: Text(
+                    'GYM GUIDE',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                
+              ),
+              const SizedBox(height: 10,),
+              const ListTile(
+                title: Text('BMI CALCULATOR', style: TextStyle(fontWeight: FontWeight.bold),),
+              ),
+              const Divider(),
+              const ListTile(
+                title: Text('FILTER', style: TextStyle(fontWeight: FontWeight.bold),),
+              ),
+            ],
+          ),
+          
+          ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
           _index = value;
@@ -77,16 +106,16 @@ class _IndexState extends State<Index> {
                     ),
                   )
                 : Expanded(
-                  child: ListView.builder(
-                      itemBuilder: (context, index) => ExerciseCardWidget(
-                          exerciseModel: exerciseList
-                              .where((element) => element.isFavourite)
-                              .toList()[index]),
-                      itemCount: exerciseList
-                          .where((element) => element.isFavourite)
-                          .toList()
-                          .length),
-                ),
+                    child: ListView.builder(
+                        itemBuilder: (context, index) => ExerciseCardWidget(
+                            exerciseModel: exerciseList
+                                .where((element) => element.isFavourite)
+                                .toList()[index]),
+                        itemCount: exerciseList
+                            .where((element) => element.isFavourite)
+                            .toList()
+                            .length),
+                  ),
           ],
         ),
       ),

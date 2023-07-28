@@ -1,12 +1,12 @@
-import 'package:flu_gym/data/exercise.dart';
 import 'package:flu_gym/model/exercise_model.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 class ExerciseDetailPage extends StatefulWidget {
+  final Function(ExerciseModel) toggleFavourite;
   static String routeName = "/exerciseDetailPage";
-  const ExerciseDetailPage({super.key});
+  const ExerciseDetailPage({super.key, required this.toggleFavourite,});
 
   @override
   State<ExerciseDetailPage> createState() => _ExerciseDetailPageState();
@@ -21,12 +21,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ExerciseModel model = exerciseList
-              .firstWhere((element) => element.name == exerciseModel.name);
-
-          setState(() {
-            model.isFavourite = !model.isFavourite;
-          });
+          widget.toggleFavourite(exerciseModel);
         },
         backgroundColor: Colors.white,
         child: Icon(
